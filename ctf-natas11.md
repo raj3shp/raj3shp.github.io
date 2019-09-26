@@ -1,4 +1,4 @@
-# Basic Server Side Web Security - NATAS CTF
+# Solving NATAS CTF Level 11
 
 I started with capture the flag (CTF) excercises to practice my web hacking skills. This post is about one of the interesting challenges I faced in solving [NATAS](https://overthewire.org/wargames/natas/) CTF.
 
