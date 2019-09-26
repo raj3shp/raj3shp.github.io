@@ -1,6 +1,6 @@
-# Learn to break PHP applications using CTFs - NATAS
+# Basic Server Side Web Security - NATAS CTF
 
-I started with capture the flag (CTF) excercises to practice my web hacking skills. This post is about one of the interesting challenges I faced in solving NATAS CTF.
+I started with capture the flag (CTF) excercises to practice my web hacking skills. This post is about one of the interesting challenges I faced in solving [NATAS](https://overthewire.org/wargames/natas/) CTF.
 
 Levels 1 to 10 are quite simple so I won't get into them. I really got stuck at level 11. While solving this level, I learned about XOR encryption, regular expressions and their weaknesses.
 
@@ -85,8 +85,10 @@ Injecting PHP code is not possible since there is a regular expression used for 
 This question lead me down the path of understanding how regular expressions work and a known weakness in preg_match function. preg_match functions expects a string as input, if we pass an array- ```http://natas11.natas.labs.overthewire.org/?bgcolor[]=%23ffffff``` the function breaks. Well, breaking the function is not enough and does not allow us to bypass the check. This only gives us an error message disclosing the full file path of the code. But that's about it, nothing much can be done with this.
 * Allright! I figured there is no easy way to solve this challenge but to do the hard work and understand how XOR encryption is being done and possible try to reverse it. I am quite new in programming and cryptography so I had no idea about how XOR encryption works and if it is reversable. A quick google search reveals that XOR encryption can be eaily broken. Read - https://en.wikipedia.org/wiki/XOR_cipher
 
+```
 a XOR b = c
 b XOR c = a
+```
 
 Boom! If you have values of two elements, you can easily derive 3rd element ($key).
 
