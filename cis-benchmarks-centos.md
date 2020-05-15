@@ -17,14 +17,17 @@ CIS benchmarks are very specific configuration guidelines that can help you hard
 
 ### They're great but not easy to achieve
 
-Your first scan (if worked correctly) should give you a long list of failures. It leaves us wondering, what the hell I am supposed to do with it? Applying these to any system or an array of systems calls for lot of resources and time, oh forget appying, analysing them is a pain. If you pass it on directly to your Infrastructure team, they would probably ignore it as a joke or best case- it will rust forever as a backlog item.
+Your first scan (if worked correctly) should give you a long list of failures. It leaves us wondering, what the hell I am supposed to do with it? Applying these to any server or a pool of servers will require lot of resources and time, oh forget appying, triaging them is a pain. If you pass it on directly to your Infrastructure team, they would probably ignore it as a joke or best case- it will rust forever as a backlog item.
 
-In the evolving tech industry, we're seeing more and more distributed team being formed for handling specific functions. System hardening naturally falls under the 'Security' umbrella. In large organizations, it would be quite daunting to justify need for making system configuration changes to thousands of servers because a list (like CIS benchmarks) told you so. 
+In the evolving tech industry, we're seeing more and more distributed team being formed for handling specific functions. System hardening naturally falls under the 'Security' umbrella. In large organizations, it would be quite daunting to justify need for making system configuration changes to thousands of servers because a list (like CIS benchmarks) told you so.
 
 ### Prioritization is the key
 
-The CIS benchmark list is long. Why would you overload the infrastructure teams with a long list of unjustified changes on top of their daily workload? We need a structured way to map CIS benchmarks with exploitation techniques in order to prioritize important benchmarks and avoid wasting time on unnecessary changes. CIS benchmarks are not to be followed exactly, you should pick the important ones that apply to security of your systems. The rest of the benchmarks can be either "accepted as risk" by mentioning a rational or  with some compensating controls.
+For an organization running thousands of CentOS servers with different services and applications, it's almost impossible to come up with a single 'configuration template' that applies to all servers. You must prioritize and implement the changes in stages. Asset risk scoring can help in identifying which systems to harden first.
 
-What if we map the CIS controls with a security framework like [MITRE ATT@CK](https://attack.mitre.org/matrices/enterprise/linux/)? If we can map the entire framework to specific CIS benchmarks, we can use the framework to prioritize and justify implementation of CIS benchmarks critical for your security policy.
+The CIS benchmark themself don't have any prioritization. We need a structured way to map CIS benchmarks with exploitation techniques in order to prioritize important benchmarks that achieve security now rather than wasting time in unnecessary checklists. CIS benchmarks are not to be followed exactly, you should pick the important ones that apply to security of your systems. The rest of the benchmarks can be either "accepted as risk" with a rational or with compensating controls.
+
+Prioritization depends a lot on context and the security stratergy/policy for a given organization.
+
 
 
