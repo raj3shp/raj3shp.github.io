@@ -18,6 +18,7 @@ Threat Intel [IP addresses] -
 
 * [Objectivebythesea](https://objectivebythesea.com/v3/content.html)
 * [Compliance with MacOS](https://www.macsysadmin.se/video/day2session3.mp4)
+* [NIST MacOS Security repo](https://github.com/usnistgov/macos_security)
 
 ## Android Security
 
