@@ -1,5 +1,6 @@
-# Software Security Blog
+# Security Resources by raj3shp
 
-### [Breaking XOR Encryption - NATAS 11 CTF](https://raj3shp.github.io/ctf-natas11)
-### [Exploiting simple file upload vulnerability - NATAS 12 CTF](https://raj3shp.github.io/ctf-natas12)
-### [New-File](https://raj3shp.github.io/new-file)
+## Mac OS Security
+
+* https://objectivebythesea.com/v3/content.html
+* Compliance with MacOS https://www.macsysadmin.se/video/day2session3.mp4
