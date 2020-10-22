@@ -1,4 +1,4 @@
-theme: jekyll-theme-midnight
+theme: jekyll-theme-dinky
 title: Software Security
 include:
   ctf-natas11.md
