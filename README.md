@@ -1,5 +1,3 @@
-# Personal Blog
-
 ## Posts
 
 - 2019
