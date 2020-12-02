@@ -1,10 +1,10 @@
-# Solving NATAS CTF Level 11
+# CTF Writeup: NATAS #11 Weak Encryption
 
 I started with capture the flag (CTF) excercises to practice my web hacking skills. This post is about one of the interesting challenges I faced in solving [NATAS](https://overthewire.org/wargames/natas/) CTF.
 
 Levels 1 to 10 are quite simple so I won't get into them. I really got stuck at level 11. While solving this level, I learned about XOR encryption, regular expressions and their weaknesses.
 
-NATAS 11 presents you with a simple application which takes user input of color that you want to set as background. You can view the source code of how this works. Here is the source code -
+NATAS 11 presents you with a simple application which takes user input of color that you want to set as background. You can view the source code of how this works. Here is the source code, before jumping to the solution give it another try based on above hint (:
 
 ```
 $defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
