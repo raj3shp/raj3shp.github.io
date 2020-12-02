@@ -6,4 +6,4 @@
      - [CTF Writeup: NATAS #12 Insecure File upload](./ctf-natas12.md)
 - 2020
   - Jun
-     - [CTF Writeup: HackTheBox Machine - Remote](./ctf-htb-remote.md)
+     - [CTF Writeup: HackTheBox Machine - Remote](./ctf-hackthebox-remote.md)
