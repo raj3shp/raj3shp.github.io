@@ -59,7 +59,7 @@ Nmap done: 1 IP address (1 host up) scanned in 84.11 seconds
     - Attempt manual connections to ftp and mountd services
     - Fire up msfconsole and run some recon against netbios and rpc
 
-* I hit to possible leads in the recon:
+* I hit two interesting leads in the recon:
    - Dirbuster found bunch of content on port 80
    
       ```
