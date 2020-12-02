@@ -1,5 +1,1 @@
 theme: jekyll-theme-slate
-title: Software Security
-include:
-  ctf-natas11.md
-  new-file.md
