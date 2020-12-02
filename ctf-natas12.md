@@ -1,4 +1,4 @@
-# Exploiting Basic file upload vulnerability - NATAS Level 12
+# CTF Writeup: NATAS #12 Exploiting Basic file upload vulnerability
 
 Level 12 presents you with a simple file upload functionality. You can upload an image and file and view it later in /upload directory.
 
