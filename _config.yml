@@ -1,2 +1,6 @@
 theme: jekyll-theme-slate
 title: i n s e c u r i t y
+include:
+    ctf-natas11.md
+    ctf-natas12.md
+    ctf-hackthebox-remote.md
