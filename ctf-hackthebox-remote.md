@@ -96,6 +96,7 @@ I hit two interesting leads in the recon:
   - Not sure how to open this file, I just drag and dropped it into my VSCode editor and instantly noticed a plain text string in load of garbage 
 
       `Administratoradminb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}`
+      
   - BAM! There it is, the SHA1 hash for the Umbraco Administrator's password. But how do I crack it?
   - Well, I just googled how to crack SHA1 hash, in top results I see `https://crackstation.net/`, paste the hash into this website, and BAM! `baconandcheese` is the password!
   - Login to the Umbraco CMS as admin
