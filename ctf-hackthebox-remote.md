@@ -4,7 +4,7 @@ In 2020 (thanks to COVID lockdowns), I started working on HackTheBox challenges.
 
 This is not going to be a full wript-up with detailed steps, I am just going to skip over to most interesting findings. It goes without saying that there was hours of research between each stage and a lot of learning.
 
-### Starting off with an NMAP Scan:
+## Starting off with an NMAP Scan:
 
 ```
 ports=$(sudo nmap -p- --min-rate=1000 -T4 10.10.10.180 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
@@ -100,7 +100,7 @@ I hit two interesting leads in the recon:
   - Well, I just googled how to crack SHA1 hash, in top results I see `https://crackstation.net/`, paste the hash into this website, and BAM! `baconandcheese` is the password!
   - Login to the Umbraco CMS as admin
  
-### Umbraco Remote Code Execution
+## Umbraco Remote Code Execution
  
 * Next step is to somehow get code execution. So I re-visited exploit-db and noticed [Umbraco CMS 7.12.4 - (Authenticated) Remote Code Execution](https://www.exploit-db.com/exploits/46153) exploit. The word authenticated caught my eye and I was quite sure this exploit has to work. Of course, it didn't work.
 * After bit of tinkering with the payload, I modified it to obtain a reverse shell using nc back to my kali machine:
@@ -119,7 +119,7 @@ xmlns:csharp_user="http://csharp.mycompany.com/mynamespace">\
 ```
 Got the user flag `type c:\Users\Public\user.txt`
 
-### Privilege Escalation
+## Privilege Escalation
 
 Now for finding privilege escalation to root, I spent too much time looking around the system and finding missing patches, etc but no luck. Hmm, the name of the machine is `remote` so there must be a remote access service that we can exploit. Did some service enumeration and found that TeamViewer is running. That's probably the way in.
 
