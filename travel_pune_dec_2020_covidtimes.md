@@ -6,10 +6,10 @@
 
 Before flight:
 
-- [ ] All travelers should submit [self-declaration form](https://csmia.aero/pdf/covid-19/New_Format_of_UNDERTAKING_(1).pdf) on the [online portal](www.newdelhiairport.in) at least 72 hours before the scheduled travel.
+- [ ] All travelers should submit [self-declaration form](https://csmia.aero/pdf/covid-19/New_Format_of_UNDERTAKING_(1).pdf) on the [online portal](https://www.newdelhiairport.in/airsuvidha/apho-registration) at least 72 hours before the scheduled travel.
 - [ ] Travelers may also seek exemption from institutional quarantine by submitting a negative RTPCR test report on arrival. This test should have been conducted within ~~96~~ 72 hrs prior to
 undertaking the journey.
-- [ ] The test report should be uploaded on the [portal](https://www.newdelhiairport.in/airsuvidha/apho-registration) for consideration.
+- [ ] The test report should be uploaded on the [portal](https://www.newdelhiairport.in/airsuvidha/covid-19-exemption-international-passenger) for consideration.
 Each passenger shall also submit a declaration with respect to authenticity of the report and
 will be liable for criminal prosecution, if found otherwise. The test report could also be
 produced upon arrival at the point of entry airport in India.
