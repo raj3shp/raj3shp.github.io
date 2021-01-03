@@ -1,6 +1,6 @@
 # Python: Exploiting de-serialization to achieve RCE
 
-The [`pickle`](https://docs.python.org/3/library/pickle.html) module implements binary protocols for serializing and de-serializing a Python object structure.
+The [`pickle` module](https://docs.python.org/3/library/pickle.html) implements binary protocols for serializing and de-serializing a Python object structure.
 
 The documentation for `pickle` module comes with red box of warning:
 
