@@ -1,4 +1,4 @@
-# CTF Writeup: NATAS #11 Weak Encryption
+# CTF Writeup: [NATAS #11 Weak Encryption](https://overthewire.org/wargames/natas/natas11.html)
 
 I started with capture the flag (CTF) excercises to practice my web hacking skills. This post is about one of the interesting challenges I faced in solving [NATAS](https://overthewire.org/wargames/natas/) CTF.
 
