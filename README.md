@@ -3,7 +3,7 @@
 
 - 2020
   - December
-     - [Python: Exploiting pickles to achieve RCE](./python_deserialization_rce.md)
+     - [Python: Exploiting `pickles` to achieve RCE](./python_deserialization_rce.md)
   - June
      - [CTF Writeup: HackTheBox Machine - Remote](./ctf-hackthebox-remote.md)
 - 2019
