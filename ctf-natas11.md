@@ -83,7 +83,7 @@ Background color: <input name=bgcolor value="<?=$data['bgcolor']?>">
 Injecting PHP code is not possible since there is a regular expression used for validating user input. It allows us to only enter 6 charaters/digits which could be either between a to f or 0-9.
 * Can I bypass the regex validation? 
 This question lead me down the path of understanding how regular expressions work and a known weakness in preg_match function. preg_match functions expects a string as input, if we pass an array- ```http://natas11.natas.labs.overthewire.org/?bgcolor[]=%23ffffff``` the function breaks. Well, breaking the function is not enough and does not allow us to bypass the check. This only gives us an error message disclosing the full file path of the code. But that's about it, nothing much can be done with this.
-* Allright! I figured there is no easy way to solve this challenge but to do the hard work and understand how XOR encryption is being done and possible try to reverse it. I am quite new in programming and cryptography so I had no idea about how XOR encryption works and if it is reversable. A quick google search reveals that XOR encryption can be eaily broken. Read - https://en.wikipedia.org/wiki/XOR_cipher
+* Allright! I figured there is no easy way to solve this challenge but to do the hard work and understand how XOR encryption is being done and possible try to reverse it. A quick google search reveals that XOR encryption can be eaily broken. Read - https://en.wikipedia.org/wiki/XOR_cipher
 
 ```
 a XOR b = c
