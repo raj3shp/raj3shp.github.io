@@ -22,7 +22,10 @@ for id in property_ids:
   for filename in os.listdir("./{}".format(id)):
     if filename.startswith("."):
         continue
-    file_format = filename.split(".")[1]
+    try: 
+        file_format = filename.split(".")[1]
+    except IndexError:
+        file_format = "jpg"
     uuid_name = "{}.{}".format(uuid.uuid4(), file_format)
     file_name_path = "./{}/{}".format(id, filename)
     # os.rename(file_name_path, uuid_name)
