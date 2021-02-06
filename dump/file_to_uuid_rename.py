@@ -2,6 +2,8 @@ import os
 import uuid
 from shutil import copyfile
 
+property_ids = []
+
 ids = input("Enter property IDs in comma separated (ex. 1, 2, 3):")
 
 for id in ids.split(","):
