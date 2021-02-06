@@ -25,7 +25,6 @@ for id in property_ids:
             file_format = filename.split(".")[1]
             uuid_name = "{}.{}".format(uuid.uuid4(), file_format)
             file_name_path = "./{}/{}".format(id, filename)
-            # os.rename(file_name_path, uuid_name)
             copyfile(file_name_path, "./images/{}".format(uuid_name))
             out_file.write("{},{}\n".format(id, uuid_name))
         except IndexError:
