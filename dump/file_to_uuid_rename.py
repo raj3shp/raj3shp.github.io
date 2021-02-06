@@ -20,14 +20,13 @@ out_file.write("property_id,uuid_filename\n")
 
 for id in property_ids:
   for filename in os.listdir("./{}".format(id)):
-    if filename.startswith("."):
-        continue
-    try:
-        file_format = filename.split(".")[1]
-    except IndexError:
-        continue
-    uuid_name = "{}.{}".format(uuid.uuid4(), file_format)
-    file_name_path = "./{}/{}".format(id, filename)
-    # os.rename(file_name_path, uuid_name)
-    copyfile(file_name_path, "./images/{}".format(uuid_name))
-    out_file.write("{},{}\n".format(id, uuid_name))
+    if not filename.startswith("."):
+        try:
+            file_format = filename.split(".")[1]
+            uuid_name = "{}.{}".format(uuid.uuid4(), file_format)
+            file_name_path = "./{}/{}".format(id, filename)
+            # os.rename(file_name_path, uuid_name)
+            copyfile(file_name_path, "./images/{}".format(uuid_name))
+            out_file.write("{},{}\n".format(id, uuid_name))
+        except IndexError:
+            pass
