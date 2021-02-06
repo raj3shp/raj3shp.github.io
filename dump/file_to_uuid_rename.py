@@ -10,7 +10,6 @@ if not os.path.exists('./images'):
 
 for id in property_ids:
   for filename in os.listdir("./{}".format(id)):
-    print(filename)
     uuid_name = "{}.jpg".format(uuid.uuid4())
     file_name_path = "./{}/{}".format(id, filename)
     # os.rename(file_name_path, uuid_name)
